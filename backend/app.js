@@ -11,6 +11,8 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
 
 app.use(express.json())
 app.use(cors())
+app.use(express.static('build'))
+
 
 
 app.use('/api/signup', usersRouter)
