@@ -91,7 +91,7 @@ return (
   handleNewNameChange = {({target})=>setNewName(target.value)}
   handleNewEmailChange = {({target})=>setNewEmail(target.value)}
   handleNewPasswordChange = {({target})=>setNewPassword(target.value)}
-  onSubmit = {addUser}
+  handleSubmit= {addUser}
   />
 
 </Togglable>

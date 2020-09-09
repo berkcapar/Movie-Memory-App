@@ -15,7 +15,7 @@ app.use(express.static('build'))
 
 
 
-app.use('/api/signup', usersRouter)
+app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 
 module.exports = app

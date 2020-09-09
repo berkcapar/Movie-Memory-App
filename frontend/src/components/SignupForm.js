@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const SignupForm = ({
-    addUser,
+    handleSubmit,
     handleNewNameChange,
     handleNewEmailChange,
     handleNewPasswordChange,
@@ -13,7 +13,7 @@ const SignupForm = ({
     return ( 
         <div> 
            <h2>Join Now! </h2> 
-    <form onSubmit={addUser}>
+    <form onSubmit={handleSubmit}>
       <div>
         Name:
       <input
