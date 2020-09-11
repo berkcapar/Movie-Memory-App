@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import loginService from './services/login' 
 import signupService from './services/signup'
+import movieService from './services/movie'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Toggleable';
 import SignupForm from './components/SignupForm';
+import Notification from './components/Notification'
 
 const App = () => {
 
+const [movies, setMovies] = useState([])
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const [user, setUser] = useState(null)
@@ -24,20 +27,30 @@ const addUser = (event) =>{
     email: newEmail,
     password:newPassword
   }
+  if(newPassword.length<3){ 
+    setErrorMessage('Password should be longer than 3 charecters')
+    setTimeout(()=>{
+      setErrorMessage(null)
+    },5000)
+ 
+}
+else { 
   signupService
   .signup(newUser)
   .then(returnedUser=>{
     setUsers(users.concat(returnedUser))
-
+    setErrorMessage('Succesfully joined!')
+    
   })
 }
-
+}
 
 useEffect(()=>{
   const loggedUserJSON = window.localStorage.getItem('loggedUser')
   if(loggedUserJSON){
     const user = JSON.parse(loggedUserJSON)
     setUser(user)
+    movieService.setToken(user.token)
   }
 },[])
 
@@ -50,6 +63,7 @@ try {
   window.localStorage.setItem(
     'loggedUser', JSON.stringify(user)
   )
+movieService.setToken(user.token)
 setUser(user)
 setEmail('')
 setPassword('')
@@ -69,9 +83,22 @@ const handleLogout = () => {
   logoutUser()
 }
 
+const addMovie = (movieObject) => { 
+  
+movieService
+.create(movieObject)
+.then(returnedMovie => {
+setMovies(movies.concat(returnedMovie))
+})
+
+}
+
 if (!user){
 return ( 
   <div> 
+  <h2 className='welcometext'>Welcome to Movie App!</h2>
+  <Notification message = {errorMessage} />
+ 
   <Togglable buttonLabel = 'login'> 
   <LoginForm
   email = {email}
@@ -101,8 +128,6 @@ return (
 
   )
 }
-
-
 return ( 
   <div>
     <div>

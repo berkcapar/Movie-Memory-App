@@ -11,3 +11,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.toggles{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.toggles div {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginform{
+
+  margin-bottom: 20px;
+}
+
+.loginform div + div {
+  margin-top: 20px;
+}
+
+.signupform{
+  margin-bottom: 20px;
+}
+
+.welcometext{
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  color: red;
+  border-style: solid;
+  
+}

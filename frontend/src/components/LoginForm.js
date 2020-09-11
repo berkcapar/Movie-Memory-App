@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const LoginForm = ({
     handleSubmit,
     handleEmailChange,
@@ -8,11 +9,11 @@ const LoginForm = ({
     password
 }) => {
     return ( 
-        <div>
-     <h2>Giriş Yap</h2>
+        <div className='loginform'>
+     <h2>Let me in!</h2>
     <form onSubmit = {handleSubmit}>    
       <div>
-      email:
+      Email:
       <input 
       type="text"
       name="name"
@@ -21,7 +22,7 @@ const LoginForm = ({
       /> 
        </div>
        <div> 
-       password:
+       Password:
       <input 
       type="text"
       name="name"

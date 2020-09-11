@@ -11,7 +11,7 @@ const SignupForm = ({
     newPassword
 }) => { 
     return ( 
-        <div> 
+        <div className='signupform'> 
            <h2>Join Now! </h2> 
     <form onSubmit={handleSubmit}>
       <div>
