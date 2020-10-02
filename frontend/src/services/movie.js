@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = ''
+const baseUrl = '/api/movies'
 
 let token = null
 
@@ -7,12 +7,9 @@ const setToken = newToken => {
     token = `bearer ${newToken}`
 }
 
-const movies = async movieObject => {
-    const config = {
-        headers: {Authorization: token}
-    }
-const response = await axios.post(baseUrl, movieObject, config)
-return response.data
+const searchmovies = async keyword => {
+    const response = await axios.get(baseUrl, { params: { keyword } })
+    return response.data
 }
 
-export default {setToken,movies}
+export default {setToken,searchmovies}

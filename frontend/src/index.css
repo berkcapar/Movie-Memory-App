@@ -47,3 +47,19 @@ code {
   border-style: solid;
   
 }
+
+.username {
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.userloggedlogout{
+  display: flex;
+  justify-content: center;
+
+}
+.welcomeuser{
+  display: flex;
+  justify-content: center;
+}

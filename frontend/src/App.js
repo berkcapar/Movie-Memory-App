@@ -6,10 +6,11 @@ import LoginForm from './components/LoginForm'
 import Togglable from './components/Toggleable';
 import SignupForm from './components/SignupForm';
 import Notification from './components/Notification'
+import KeywordInput from './components/KeywordInput'
 
 const App = () => {
 
-const [movies, setMovies] = useState([])
+const [keyword, setKeyword] = useState('')
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const [user, setUser] = useState(null)
@@ -83,14 +84,16 @@ const handleLogout = () => {
   logoutUser()
 }
 
-const addMovie = (movieObject) => { 
+const handleSearch = async (event) => {
+event.preventDefault()
+try {
+  const movie = await movieService.searchmovies({
+    keyword
+  })
   
-movieService
-.create(movieObject)
-.then(returnedMovie => {
-setMovies(movies.concat(returnedMovie))
-})
-
+}catch(execption){
+setErrorMessage('Movie not found!')
+}
 }
 
 if (!user){
@@ -130,10 +133,18 @@ return (
 }
 return ( 
   <div>
-    <div>
-      <p>{user.name} logged in</p>
-      
-      <button onClick={handleLogout}>Log Out!</button>    
+    <div className='userloggedlogout'> 
+     <p>{user.name} logged in</p>
+     <button className='logoutbutton' onClick={handleLogout}>Log Out!</button>    
+     </div>
+    <div className='welcomeuser'>
+     
+      <KeywordInput
+      keyword = {keyword}
+      handleKeywordChange = {({target})=>setKeyword(target.value)}
+      handleSubmit={handleSearch}            
+      />      
+     
     </div>
   
   </div>
