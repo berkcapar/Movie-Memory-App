@@ -7,6 +7,7 @@ import Togglable from './components/Toggleable';
 import SignupForm from './components/SignupForm';
 import Notification from './components/Notification'
 import KeywordInput from './components/KeywordInput'
+import MovieList from './components/MovieList'
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const [newName, setNewName] = useState('')
 const [newEmail, setNewEmail] = useState('')
 const [newPassword, setNewPassword] = useState('')
 const [errorMessage, setErrorMessage] = useState(null)
+const [movies, setMovies] = useState([])
 
 
 const addUser = (event) =>{
@@ -87,10 +89,10 @@ const handleLogout = () => {
 const handleSearch = async (event) => {
 event.preventDefault()
 try {
-  const movie = await movieService.searchmovies({
+  const movie = await movieService.searchmovies(
     keyword
-  })
-  
+  ) 
+  setMovies(movie)
 }catch(execption){
 setErrorMessage('Movie not found!')
 }
@@ -143,7 +145,9 @@ return (
       keyword = {keyword}
       handleKeywordChange = {({target})=>setKeyword(target.value)}
       handleSubmit={handleSearch}            
-      />      
+      />
+     
+      <MovieList movies={movies}/>
      
     </div>
   
