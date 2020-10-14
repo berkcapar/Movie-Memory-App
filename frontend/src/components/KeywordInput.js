@@ -9,7 +9,7 @@ const KeywordInput = ({
     return (
         <form onSubmit={handleSubmit}>
             <div className='keywordinput'>
-                
+                <h2>Search the recent movies you have watched!</h2>
                 <input
                 type = "text"
                 value = {keyword}

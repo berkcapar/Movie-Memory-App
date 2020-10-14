@@ -1,29 +1,29 @@
-const axios = require("axios");
+const axios = require('axios')
 
 // search
-const fetchMoviesByKeyword = (keyword) => 
+const fetchMoviesByKeyword = (keyword) =>
   axios({
-      "method": "GET",
-      "url": "https://movie-database-imdb-alternative.p.rapidapi.com/",
-      "headers": {
-        "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
-        "x-rapidapi-key": "06e1525424msh84ba94dea49394bp108e99jsn68041784006f",
-        "useQueryString": true
-      },
-      "params": {
-        "page": "1",
-        "r": "json",
-        "s": keyword
-      }
-    })
+    'method': 'GET',
+    'url': 'https://movie-database-imdb-alternative.p.rapidapi.com/',
+    'headers': {
+      'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
+      'x-rapidapi-key': '06e1525424msh84ba94dea49394bp108e99jsn68041784006f',
+      'useQueryString': true
+    },
+    'params': {
+      'page': '1',
+      'r': 'json',
+      's': keyword
+    }
+  })
 
 
-// // by id && title 
+// // by id && title
 // axios({
 //     "method": "GET",
 //     "url": "https://movie-database-imdb-alternative.p.rapidapi.com/",
 //     "headers": {
-  // { movies: data }
+//       { movies: data }
 //       "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
 //       "x-rapidapi-key": "06e1525424msh84ba94dea49394bp108e99jsn68041784006f",
 //       "useQueryString": true

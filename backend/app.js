@@ -17,7 +17,7 @@ app.use(express.static('build'))
 app.use('/api/login', loginRouter)
 
 // @TODO: REQUIRE AUTHENTICATION
-app.use('/api/users', usersRouter)
+app.use('/api/users', /* authMiddleware, */ usersRouter)
 app.use('/api/movies', movieRouter)
 
 module.exports = app

@@ -8,8 +8,19 @@ const setToken = newToken => {
 }
 
 const searchmovies = async keyword => {
-    const response = await axios.get(baseUrl, { params: { keyword } })
+    let config = {
+        headers: {Authorization:token}
+    }
+    const response = await axios.get(baseUrl, { params: { keyword } },config)
     return response.data
 }
 
-export default {setToken,searchmovies}
+const addmovies = async ({ title, poster }) => {
+    let config = {
+        headers: {Authorization:token}
+    }
+    const response = await axios.post(baseUrl, { title, poster }, config)
+    return response.data
+}
+
+export default {setToken,searchmovies,addmovies}

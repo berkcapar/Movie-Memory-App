@@ -1,38 +1,41 @@
 module.exports = {
-    'env': {
-        'browser': true,
-        'commonjs': true,
-        'es2021': true
-    },
-    'extends': [
-        'eslint:recommended',
-        'plugin:react/recommended'
+    "extends": [
+      "react-app",
+      "eslint:recommended",
+      "plugin:prettier/recommended"
     ],
-    'parserOptions': {
-        'ecmaFeatures': {
-            'jsx': true
-        },
-        'ecmaVersion': 12
-    },
-    'plugins': [
-        'react'
+    "env": {
+      "node": true,
+      "browser": true,
+      "es6": true,
+      "jest": true
+  },
+    "plugins": [
+      "simple-import-sort"
     ],
-    'rules': {
-        'indent': [
-            'error',
-            4
-        ],
-        'linebreak-style': [
-            'error',
-            'unix'
-        ],
-        'quotes': [
-            'error',
-            'single'
-        ],
-        'semi': [
-            'error',
-            'never'
-        ]
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "trailingComma": "none",
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "quotes": [
+        2,
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "comma-dangle": 0,
+      "simple-import-sort/sort": "error",
+      "max-len": 0,
+      "multiline-ternary": ["error", "always-multiline"],
+      "no-console": 0
     }
-}
+  }

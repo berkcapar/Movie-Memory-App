@@ -63,3 +63,29 @@ code {
   display: flex;
   justify-content: center;
 }
+
+.movielist{
+  background: white;
+  border-radius: 18px;
+  margin-top: 20px;
+  display: flex;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.moviecard{
+  display: flex;
+  flex-direction: column;
+  border-radius: 9px;
+  box-shadow: 0px 3.62642px 6.34624px rgba(0, 0, 0, 0.25);
+  width: 300px;
+  height: 600px;
+  margin: 10px
+}
+
+.movietitle{
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+}

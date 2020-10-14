@@ -23,7 +23,8 @@ const [errorMessage, setErrorMessage] = useState(null)
 const [movies, setMovies] = useState([])
 
 
-const addUser = (event) =>{
+
+const addUser = (event) => {
   event.preventDefault()
   const newUser = {
     name: newName,
@@ -89,10 +90,18 @@ const handleLogout = () => {
 const handleSearch = async (event) => {
 event.preventDefault()
 try {
-  const movie = await movieService.searchmovies(
+  /*
+    const response = axios.get
+    response.data = JSON
+    response.data.movies = BIZIM BACKENDDEN YOLLADIGIMIZ SEY
+  */
+
+  const { movies } = await movieService.searchmovies(
     keyword
   ) 
-  setMovies(movie)
+  setMovies(movies)
+  setKeyword('')
+ 
 }catch(execption){
 setErrorMessage('Movie not found!')
 }
@@ -146,13 +155,11 @@ return (
       handleKeywordChange = {({target})=>setKeyword(target.value)}
       handleSubmit={handleSearch}            
       />
-     
-      <MovieList movies={movies}/>
-     
+     <MovieList movies={movies}/>     
     </div>
   
   </div>
 )
 }
 
-export default App;
+export default App
