@@ -11,7 +11,8 @@ const searchmovies = async (keyword) => {
   let config = {
     headers: { Authorization: token },
   }
-  const response = await axios.get(baseUrl, { params: { keyword } }, config)
+  const object = {keyword,config}
+  const response = await axios.get(baseUrl,object)
   return response.data
 }
 

@@ -1,32 +1,29 @@
 import React from "react"
-import movieService from "../services/movie"
+import { useDispatch } from "react-redux"
+import { showNotification } from "../redux/reducers/notificationReducer"
+import { search } from "../redux/reducers/searchReducer"
 
 
-const KeywordInput = ({ setMovies,keyword, setKeyword, setErrorMessage, handleKeywordChange, handleSubmit }) => {
+const KeywordInput = () => {
 
-  
+  const dispatch = useDispatch()
+
   const handleSearch = async (event) => {
     event.preventDefault()
+    const keyword = event.target.keyword.value
     try {
-      /*
-    const response = axios.get
-    response.data = JSON
-    response.data.movies = BIZIM BACKENDDEN YOLLADIGIMIZ SEY
-  */
+      dispatch(search(keyword))
 
-      const { movies } = await movieService.searchmovies(keyword)
-      setMovies(movies)
-      setKeyword("")
     } catch (execption) {
-      setErrorMessage("Movie not found!")
+      dispatch(showNotification(`Movie not found!`),5)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSearch}>
       <div className="keywordinput">
         <h2>Search the recent movies you have watched!</h2>
-        <input type="text" value={keyword} onChange={handleKeywordChange} />
+        <input name = "keyword" />
       </div>
       <button type="submit">Search</button>
     </form>

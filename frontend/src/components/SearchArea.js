@@ -1,9 +1,13 @@
 import React from 'react'
 import MovieList from './MovieList'
 import KeywordInput from './KeywordInput'
+import { useSelector } from 'react-redux'
 
 
-const SearchArea = ({user,setUser,keyword,setKeyword,handleSearch,movies}) => {
+const SearchArea = ({setUser,keyword,setKeyword,handleSearch,movies}) => {
+
+
+const username = useSelector(state => state.loggedUser.name)
 
     const logoutUser = () => localStorage.removeItem("loggedUser")
 
@@ -15,17 +19,13 @@ const SearchArea = ({user,setUser,keyword,setKeyword,handleSearch,movies}) => {
     return (
         <div>
         <div className="userloggedlogout">
-          <p>{user.name} logged in</p>
+          <p>{username} logged in</p>
           <button className="logoutbutton" onClick={handleLogout}>
             Log Out!
           </button>
         </div>
         <div className="welcomeuser">
-          <KeywordInput
-            keyword={keyword}
-            handleKeywordChange={({ target }) => setKeyword(target.value)}
-            handleSubmit={handleSearch}
-          />
+          <KeywordInput/>
           <MovieList movies={movies} />
         </div>
       </div>

@@ -4,14 +4,15 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import loginReducer from './reducers/loginReducer'
 import notificationReducer from './reducers/notificationReducer'
+import searchReducer from './reducers/searchReducer'
 import signupReducer from './reducers/signupReducer'
 
 
 const reducer = combineReducers({
     loggedUser: loginReducer,
     notification: notificationReducer,
-    newUser: signupReducer
-    
+    newUser: signupReducer,
+    search: searchReducer  
 })
 
 
