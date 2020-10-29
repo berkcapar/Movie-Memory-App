@@ -1,44 +1,43 @@
 import React from "react"
+import { useDispatch } from "react-redux"
+import { showNotification } from "../redux/reducers/notificationReducer"
+import { createUser } from "../redux/reducers/signupReducer"
 
-const SignupForm = ({
-  handleSubmit,
-  handleNewNameChange,
-  handleNewEmailChange,
-  handleNewPasswordChange,
-  newName,
-  newEmail,
-  newPassword,
-}) => {
+const SignupForm = () => {
+  
+  const dispatch = useDispatch()
+
+  const addUser = (event) => {
+    event.preventDefault()
+
+    const name = event.target.name.value
+    const email= event.target.email.value
+    const password = event.target.password.value
+      
+    if(password.length <3) {
+      dispatch(showNotification(`Password should be longer than 3 charecters`),5)
+    }
+    else {
+      dispatch(createUser(name,email,password))
+      dispatch(showNotification(`Succesfully joined`),5)
+    }
+  }
+
   return (
     <div className="signupform">
       <h2>Join Now! </h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={addUser}>
         <div>
           Name:
-          <input
-            type="text"
-            value={newName}
-            name="New Name"
-            onChange={handleNewNameChange}
-          />
+          <input name="name"/>
         </div>
         <div>
           Email:
-          <input
-            type="text"
-            value={newEmail}
-            name="New Email"
-            onChange={handleNewEmailChange}
-          />
+          <input name="email"/>
         </div>
         <div>
           Password:
-          <input
-            type="password"
-            value={newPassword}
-            name="New Password"
-            onChange={handleNewPasswordChange}
-          />
+          <input name="password"/>
         </div>
         <button type="submit">Join!</button>
       </form>

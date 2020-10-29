@@ -1,8 +1,9 @@
 import axios from "axios"
 const baseUrl = "/api/login"
 
-const login = async ({ email, password }) => {
-  const response = await axios.post(baseUrl, { email, password })
+const login = async ( email, password ) => {
+  const object = {email, password}
+  const response = await axios.post(baseUrl,object)
   return response.data
 }
 
