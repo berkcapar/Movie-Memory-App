@@ -13,7 +13,7 @@ export const showNotification = (message, second = 5) => {
       type: 'NOTIFICATION',
       message
     })
-    
+
     setTimeout(() => {
       dispatch({
         type: 'NOTIFICATION',
