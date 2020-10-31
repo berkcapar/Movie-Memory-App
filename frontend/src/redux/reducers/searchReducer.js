@@ -1,24 +1,36 @@
 import movieService from "../../services/movie"
+import {
+  showNotification
+} from "./notificationReducer"
 
-
-const searchReducer = (state = [], action ) => {
-    switch (action.type) {
-        case 'SEARCH':
-            return action.movies
-           default:
-               return state    
-       
-    }
+const searchReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SEARCH':
+      return action.movies
+    default:
+      return state
+  }
 }
 
 export const search = (keyword) => {
-    return async dispatch => {
-        const movies  = await movieService.searchmovies(keyword)   
-        dispatch({
+  return async dispatch => {
+    try {
+      const {
+        movies
+      } = await movieService.searchmovies(keyword)
+
+      if (movies.length === 0) {
+        return dispatch(showNotification(`Movie not found!`, 5))
+      }
+
+      dispatch({
         type: 'SEARCH',
         movies
-     })
+      })
+    } catch (error) {
+      dispatch(showNotification(`Movie not found!`, 5))
     }
+  }
 }
 
 export default searchReducer

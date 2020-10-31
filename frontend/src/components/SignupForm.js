@@ -19,7 +19,7 @@ const SignupForm = () => {
     }
     else {
       dispatch(createUser(name,email,password))
-      dispatch(showNotification(`Succesfully joined`),5)
+      dispatch(showNotification(`Succesfully joined`))
     }
   }
 

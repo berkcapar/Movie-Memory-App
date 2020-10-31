@@ -1,4 +1,13 @@
 import axios from "axios"
+
+// https://github.com/axios/axios#request-config
+/*
+  headers: {}
+  params: {
+    ID: 12345
+  }, 
+*/
+
 const baseUrl = "/api/movies"
 
 let token = null
@@ -8,19 +17,22 @@ const setToken = (newToken) => {
 }
 
 const searchmovies = async (keyword) => {
-  let config = {
+  const config = {
     headers: { Authorization: token },
+    params: { keyword }
   }
-  const object = {keyword,config}
-  const response = await axios.get(baseUrl,object)
+  
+  const response = await axios.get(baseUrl, config)
   return response.data
 }
 
 const addmovies = async ({ title, poster }) => {
-  let config = {
+  const config = {
     headers: { Authorization: token },
+    data: { title, poster },
   }
-  const response = await axios.post(baseUrl, { title, poster }, config)
+
+  const response = await axios.post(baseUrl, config)
   return response.data
 }
 

@@ -1,6 +1,5 @@
 import React from "react"
 import { useDispatch } from "react-redux"
-import { showNotification } from "../redux/reducers/notificationReducer"
 import { search } from "../redux/reducers/searchReducer"
 
 
@@ -11,12 +10,7 @@ const KeywordInput = () => {
   const handleSearch = async (event) => {
     event.preventDefault()
     const keyword = event.target.keyword.value
-    try {
-      dispatch(search(keyword))
-
-    } catch (execption) {
-      dispatch(showNotification(`Movie not found!`),5)
-    }
+    dispatch(search(keyword))
   }
 
   return (

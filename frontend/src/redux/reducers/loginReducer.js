@@ -11,11 +11,22 @@ export const login = (email,password) => {
     }
 }
 
+export const logout = () => {
+    return async dispatch => { 
+    localStorage.removeItem(("loggedUser"))
+    dispatch({
+        type: 'USER_LOGGED_OUT'
+    })}
+    
+}
+
 
 const loginReducer = (state = '', action) => {
     switch (action.type) {
         case 'USER_LOGGED_IN':
-            return action.data            
+            return action.data
+        case 'USER_LOGGED_OUT':
+            return state                
         default:
            return state
     }

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 const movieSchema = new mongoose.Schema({
-  Title: {
+  title: {
     type:String
   },
-  Poster: {
+  poster: {
     type:String
   },
   user: {

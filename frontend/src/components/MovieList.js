@@ -4,11 +4,7 @@ import MovieListItem from "./MovieListItem"
 
 const MovieList = () => {
 
-  const searchedmovies = useSelector(state=>{
-    console.log(state.search)
-    return state.search.filter(m=>m.title) 
-  })
-  console.log(searchedmovies)
+  const searchedmovies = useSelector(state=>state.search)
   
   return (
     <div className="movielist">

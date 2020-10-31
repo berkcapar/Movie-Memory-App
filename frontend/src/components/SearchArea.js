@@ -1,38 +1,34 @@
-import React from 'react'
-import MovieList from './MovieList'
-import KeywordInput from './KeywordInput'
-import { useSelector } from 'react-redux'
+import React from "react"
+import MovieList from "./MovieList"
+import KeywordInput from "./KeywordInput"
+import { useDispatch, useSelector } from "react-redux"
+import { logout } from "../redux/reducers/loginReducer"
+import { getUserNameFromState } from "../redux/selectors"
 
+const SearchArea = ({ movies }) => {
+  const dispatch = useDispatch()
+  const username = useSelector(getUserNameFromState)
 
-const SearchArea = ({setUser,keyword,setKeyword,handleSearch,movies}) => {
+  const handleLogout = () => {
+    dispatch(logout())
+    window.location.href = '/'
+  }
 
-
-const username = useSelector(state => state.loggedUser.name)
-
-    const logoutUser = () => localStorage.removeItem("loggedUser")
-
-    const handleLogout = () => {
-      setUser(null)
-      logoutUser()
-    }
-
-    return (
-        <div>
-        <div className="userloggedlogout">
-          <p>{username} logged in</p>
-          <button className="logoutbutton" onClick={handleLogout}>
-            Log Out!
-          </button>
-        </div>
-        <div className="welcomeuser">
-          <KeywordInput/>
-          <MovieList movies={movies} />
-        </div>
+  return (
+    <div>
+      <div className="userloggedlogout">
+        <p>{username} logged in</p>
+        
+        <button className="logoutbutton" onClick={handleLogout}>
+          Log Out!
+        </button>
       </div>
-
-    )
-
+      <div className="welcomeuser">
+        <KeywordInput />
+        <MovieList movies={movies} />
+      </div>
+    </div>
+  )
 }
 
 export default SearchArea
-

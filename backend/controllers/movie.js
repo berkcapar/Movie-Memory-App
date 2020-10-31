@@ -37,13 +37,21 @@ movieRouter.get('/', async (request, response) => {
   }
 })
 
+const getTokenFrom = request => {
+  const authorization = request.get('authorization')
+  if(authorization && authorization.toLowerCase().startsWith('bearer')){
+    return authorization.substring(7)
+  }
+  return null
+}
+
 movieRouter.post('/', async (request, response) => {
   const { title, poster } = request.body
+  const token = getTokenFrom(request)
+  const decodedToken = jwt.verify(token, process.env.SECRET)
+  console.log(token)
 
-  const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  console.log(request.token)
-
-  if(!request.token || !decodedToken.id ){
+  if(!token || !decodedToken.id ){
     return response.status(401).json({ error:'token is missing or invalid' })
   }
 
@@ -52,7 +60,7 @@ movieRouter.post('/', async (request, response) => {
   const movie = new Movie({
     title,
     poster,
-    user
+    user: user._id
   })
 
   const savedMovie = await movie.save()
