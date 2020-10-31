@@ -18,7 +18,7 @@ const SearchArea = ({ movies }) => {
     <div>
       <div className="userloggedlogout">
         <p>{username} logged in</p>
-        
+
         <button className="logoutbutton" onClick={handleLogout}>
           Log Out!
         </button>

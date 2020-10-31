@@ -15,7 +15,7 @@ const SignupForm = () => {
     const password = event.target.password.value
       
     if(password.length <3) {
-      dispatch(showNotification(`Password should be longer than 3 charecters`),5)
+      dispatch(showNotification(`Password should be longer than 3 charecters`))
     }
     else {
       dispatch(createUser(name,email,password))

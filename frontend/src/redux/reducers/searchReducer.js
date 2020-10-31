@@ -20,7 +20,7 @@ export const search = (keyword) => {
       } = await movieService.searchmovies(keyword)
 
       if (movies.length === 0) {
-        return dispatch(showNotification(`Movie not found!`, 5))
+        return dispatch(showNotification(`Movie not found!`))
       }
 
       dispatch({
@@ -28,7 +28,7 @@ export const search = (keyword) => {
         movies
       })
     } catch (error) {
-      dispatch(showNotification(`Movie not found!`, 5))
+      dispatch(showNotification(`Movie not found!`))
     }
   }
 }
