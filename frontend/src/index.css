@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
 }
 
 code {
@@ -22,13 +23,6 @@ code {
   flex-direction: column;
 }
 
-.loginform {
-  margin-bottom: 20px;
-}
-
-.loginform div + div {
-  margin-top: 20px;
-}
 
 .signupform {
   margin-bottom: 20px;

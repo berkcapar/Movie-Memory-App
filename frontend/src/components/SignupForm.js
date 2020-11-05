@@ -26,7 +26,7 @@ const SignupForm = () => {
   return (
     <div className="signupform">
       <h2>Join Now! </h2>
-      <form onSubmit={addUser}>
+      <form className="signupform" onSubmit={addUser}>
         <div>
           Name:
           <input name="name"/>
@@ -40,6 +40,15 @@ const SignupForm = () => {
           <input name="password"/>
         </div>
         <button type="submit">Join!</button>
+        <style jsx>{`
+        background-color: #660033;
+        display: flex;
+        flex-direction: column;
+        border-radius: 1.5rem;
+        width: 80%;
+        margin: 0 auto;
+        `}
+        </style>
       </form>
     </div>
   )

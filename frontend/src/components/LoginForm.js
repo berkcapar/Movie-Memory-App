@@ -19,7 +19,7 @@ const LoginForm = () => {
       window.localStorage.setItem("loggedUser", JSON.stringify(loggedUser))
       movieService.setToken(loggedUser.token)
     } catch (execption) {
-      dispatch(showNotification(`Wrong Credentials`), 5)
+      dispatch(showNotification(`Wrong Credentials`))
     }
   }
 
@@ -37,17 +37,54 @@ const LoginForm = () => {
 
   return (
     <div className="loginform">
-      <h2>Let me in!</h2>
-      <form onSubmit={handleLogin}>
+      <h2 className="logintitle">Let me in!</h2>
+      <form className="loginform" onSubmit={handleLogin}>
+        <div className="emailpassword"> 
         <div>
           Email:
-          <input name="email" />
+          <input className="emailinput" name="email" />
         </div>
         <div>
           Password:
-          <input name="password" />
+          <input className="passwordinput" name="password" />
         </div>
-        <button type="submit">Giriş Yap</button>
+        </div>
+        <button className="loginbutton" type="submit">Log in!</button>
+        <style jsx>{`
+        .loginform {
+          padding-bottom: 1rem;
+          padding-top: 0.2rem;   
+          background-color: #660033;
+          color: white;
+          border-radius: 1.5rem;
+          width: 80%;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+        }
+        .loginform div + div {
+          margin-top: 1.5rem
+        }
+        .emailpassword{
+          margin: 0 auto;
+        }
+        .logintitle{
+        text-align: center;
+        }
+        .emailinput{
+          margin-left: 2.3rem;
+        }
+        .passwordinput{
+          margin-left: 0.4rem;
+        }
+        .loginbutton{
+          margin: 1.5rem auto;
+          width: 20%;
+        }
+
+
+        `}
+        </style>
       </form>
     </div>
   )
