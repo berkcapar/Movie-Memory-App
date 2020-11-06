@@ -14,10 +14,11 @@ const WelcomePage = () => {
         </h2>
         <div className="registercard">
           <Notification />
-          <LoginForm />
-          <Togglable className="toggle" buttonLabel="Join">
+          <LoginForm />    
+          <Togglable  buttonLabel="Join">
             <SignupForm />
           </Togglable>
+         
         </div>
       </div>
 

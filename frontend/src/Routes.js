@@ -5,7 +5,7 @@ import {BrowserRouter,Switch, Route, Link} from 'react-router-dom'
 
 const Routes = () => ( 
     <BrowserRouter>
-    <div> 
+    <div className="navigation">  
     <Link to = "/">Home</Link>
     <Link to = "/search">Search Movie!</Link>
     <Link to = "/mycollection">My Collection</Link>

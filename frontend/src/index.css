@@ -13,20 +13,152 @@ code {
     monospace;
 }
 
-.toggles {
+/* navigation layout */
+
+.navigation{
   display: flex;
-  justify-content: center;
-  flex-direction: row;
+  justify-content: flex-end;
 }
-.toggles div {
+
+/* navigation layout */
+
+.registercard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+/* login layout */
+
+.loginarea {
+  padding-bottom: 1rem;
+  padding-top: 0.2rem;   
+  background-color: #660033;
+  color: white;
+  border-radius: 1.5rem;
+  width: 80%;
+  max-width: 400px;
+  margin: 0 2rem;
   display: flex;
   flex-direction: column;
 }
-
-
-.signupform {
-  margin-bottom: 20px;
+.loginform{
+  width: 80%;
+  margin: 0 auto; 
 }
+.loginform div + div {
+  margin-top: 1.5rem
+}
+.emailpassword{
+  margin: 0 auto;
+}
+.logintitle{
+ width: 30%;
+ margin: 1rem auto;
+}
+.emailinput{
+  margin-left: 2.3rem;
+  width: 50%;
+}
+.passwordinput{
+  margin-left: 0.4rem;
+  width: 50%;
+}
+.loginbutton{
+  margin: 1.5rem auto;
+  width: 20%;
+}
+
+/* login-responsive */
+
+@media(min-width:625px){
+  .loginarea{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  }
+  .loginform{
+   width: 50%;       
+  }
+  .emailinput{
+    margin-left: 2.35rem;
+  }
+  .passwordinput{
+    margin-left: 0.5rem;
+  }
+
+  .loginbutton{
+    margin: 1rem auto;
+    width: 30%;
+  }
+}
+
+/* signup area layout */
+.signuparea{
+  display: flex;
+  flex-direction: column;
+  background-color: #660033;   
+  width: 80%;
+  margin: 0 2rem;
+  max-width: 400px;
+  
+  }
+  .signupform{
+    width: 100%;
+    margin: 0 auto; 
+  }
+ .signupform div + div + div{
+   margin-top: 1rem;
+ }
+ .signup-inputs{
+  margin: 0 auto;
+}
+.signup-title{
+ width: 50%;
+ margin: 1rem auto;
+}
+.signup-nameinput{
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  width: 50%;
+}
+
+.signup-emailinput{
+  margin-left: 2.3rem;
+  width: 50%;
+}
+.signup-passwordinput{
+  margin-left: 0.4rem;
+  width: 50%;
+}
+.signup-button{
+  margin: 1.5rem auto;
+  width: 30%;
+}
+ .signuptoggle{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  background-color: #660033;
+  color: white;
+  border-radius: 1rem;
+}
+/* signup area layout */
+
+.joinbutton{
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1.125rem;
+  border-radius: 0.5rem;
+  background-color: #660033;
+  color: white     
+}
+.hidebutton{
+  width:40%;
+  margin: 0.5rem auto;
+}
+
 
 .welcometext {
   display: flex;

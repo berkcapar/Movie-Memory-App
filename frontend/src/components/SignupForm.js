@@ -24,31 +24,24 @@ const SignupForm = () => {
   }
 
   return (
-    <div className="signupform">
-      <h2>Join Now! </h2>
+    <div className="signuparea">
+      <h2 className="signup-title">Join Now! </h2>
       <form className="signupform" onSubmit={addUser}>
-        <div>
+        <div className="signup-inputs"> 
+        <div className="signup-nametext">
           Name:
-          <input name="name"/>
+          <input className="signup-nameinput" name="name"/>
         </div>
-        <div>
+        <div className="signup-emailtext" >
           Email:
-          <input name="email"/>
+          <input className="signup-emailinput" name="email"/>
         </div>
-        <div>
+        <div className="signup-passwordtext">
           Password:
-          <input name="password"/>
+          <input className="signup-passwordinput" name="password"/>
         </div>
-        <button type="submit">Join!</button>
-        <style jsx>{`
-        background-color: #660033;
-        display: flex;
-        flex-direction: column;
-        border-radius: 1.5rem;
-        width: 80%;
-        margin: 0 auto;
-        `}
-        </style>
+        </div>
+        <button className="signup-button" type="submit">Join!</button>
       </form>
     </div>
   )
