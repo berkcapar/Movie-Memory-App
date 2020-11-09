@@ -1,6 +1,8 @@
 import loginService from '../../services/login'
 
 
+
+
 export const login = (email,password) => {
     return async dispatch => {
         const loggedUser = await loginService.login(email,password)
@@ -11,6 +13,7 @@ export const login = (email,password) => {
     }
 }
 
+
 export const logout = () => {
     return async dispatch => { 
     localStorage.removeItem(("loggedUser"))
@@ -20,11 +23,19 @@ export const logout = () => {
     
 }
 
+const initialState = {
+    data: '',
+    isLoggedIn: false
+}
 
-const loginReducer = (state = '', action) => {
+
+const loginReducer = (state = initialState,  action) => {
     switch (action.type) {
         case 'USER_LOGGED_IN':
-            return action.data
+            return {
+                data: action.data,
+                isLoggedIn:true
+            }
         case 'USER_LOGGED_OUT':
             return state                
         default:

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Redirect } from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 import { login } from "../redux/reducers/loginReducer"
 import { showNotification } from "../redux/reducers/notificationReducer"
 import movieService from "../services/movie"
@@ -8,15 +8,16 @@ import movieService from "../services/movie"
 const LoginForm = () => {
   const dispatch = useDispatch()
   const loggedUser = useSelector((state) => state.loggedUser)
+  const history = useHistory()
 
   const handleLogin = async (event) => {
     event.preventDefault()
     const email = event.target.email.value
     const password = event.target.password.value
-
     try {
       dispatch(login(email, password))
       window.localStorage.setItem("loggedUser", JSON.stringify(loggedUser))
+      history.push('/search')
       movieService.setToken(loggedUser.token)
     } catch (execption) {
       dispatch(showNotification(`Wrong Credentials`))
@@ -31,9 +32,10 @@ const LoginForm = () => {
     }
   }, [])
 
+  /*
   if (loggedUser) {
     return <Redirect to="/search" />
-  }
+  }*/
 
   return (
     <div className="loginarea">
