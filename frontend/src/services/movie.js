@@ -19,9 +19,9 @@ const setToken = (newToken) => {
 const searchmovies = async (keyword) => {
   const config = {
     headers: { Authorization: token },
-    params: { keyword }
+    params: { keyword },
   }
-  
+
   const response = await axios.get(baseUrl, config)
   return response.data
 }
@@ -29,11 +29,15 @@ const searchmovies = async (keyword) => {
 const addmovies = async ({ title, poster }) => {
   const config = {
     headers: { Authorization: token },
-    data: { title, poster },
   }
 
-  const response = await axios.post(baseUrl, config)
+  const response = await axios.post(baseUrl, { title, poster}, config)
   return response.data
 }
 
-export default { setToken, searchmovies, addmovies }
+const getMovies = async () => {
+  const response = await axios.get(baseUrl)
+  return response.data
+}
+
+export default { setToken, searchmovies, addmovies, getMovies }

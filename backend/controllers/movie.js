@@ -48,7 +48,7 @@ const getTokenFrom = request => {
 movieRouter.post('/', async (request, response) => {
   const { title, poster } = request.body
   const token = getTokenFrom(request)
-  const decodedToken = jwt.verify(token, process.env.SECRET)
+  const decodedToken = jwt.verify(token, process.env.SECRET) // eslint-disable-line
   console.log(token)
 
   if(!token || !decodedToken.id ){

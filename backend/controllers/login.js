@@ -20,7 +20,7 @@ loginRouter.post('/', async (request,response) => {
     email: user.email,
     id: user._id
   }
-  const token = jwt.sign(userForToken, process.env.SECRET)
+  const token = jwt.sign(userForToken, process.env.SECRET) //eslint-disable-line
   response.status(200)
     .send ({ token, email:user.email, name:user.name })
 

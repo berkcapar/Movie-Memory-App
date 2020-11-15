@@ -1,26 +1,24 @@
 import React, { useState } from "react"
-import movieService from "../services/movie"
+import { useDispatch } from "react-redux"
+import {newMovie} from "../redux/reducers/collectionReducer"
 
 const MovieListItem = ({ movie }) => {
   const [loading, setLoading] = useState(false)
   const [watched, setWatched] = useState(false)
+  const dispatch = useDispatch()
+
 
   const addMovie = async (event) => {
     setLoading(true)
-
+    const title = movie.Title;
+    const poster = movie.Poster
     try {
-      const watchedmovie = await movieService.addmovies({
-        title: movie.Title,
-        poster: movie.Poster,
-      })
-      setWatched(watchedmovie)
-    } catch (execption) {
+      dispatch(newMovie(title,poster))
+    } catch(execption){
       console.log("Try to add again!")
-    } finally {
-      setLoading(false)
     }
   }
-
+  
   return (
     <div className="moviecard">
       <h2 className="movietitle">{movie.Title}</h2>
