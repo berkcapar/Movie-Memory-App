@@ -1,14 +1,21 @@
-import React from "react"
-import { useSelector } from "react-redux"
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { initMovies } from "../redux/reducers/collectionReducer"
+import MovieListItem from "./MovieListItem"
 
 const Collection = () => {
-  const watchedmovies = useSelector(state => state.collectedMovies)
-  console.log(watchedmovies)
+  const watchedMovies = useSelector((state) => state.collectedMovies)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(initMovies())
+  }, [dispatch])
 
   return (
     <div>
-    <h2>{watchedmovies.title}</h2>
-    <img src={watchedmovies.poster} />
+      <>
+        {watchedMovies.map(movie => <MovieListItem key={movie.imdbID} movie={movie} />)}
+      </>
     </div>
   )
 }

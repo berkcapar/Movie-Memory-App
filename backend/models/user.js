@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
-
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -13,12 +12,19 @@ const userSchema = new mongoose.Schema({
     unique: true
   },
   passwordHash: String,
-  movies: [
+  watchedMovies: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Movie'
+      imdbID: {
+        type: String,
+      },
+      title: {
+        type: String,
+      },
+      poster: {
+        type: String,
+      },
     }
-  ]
+  ],
 })
 
 userSchema.plugin(uniqueValidator)

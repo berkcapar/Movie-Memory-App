@@ -1,8 +1,5 @@
 const movieRouter = require('express').Router()
 const movieService = require('../services/Movie')
-const jwt = require('jsonwebtoken')
-const Movie = require('../models/movie')
-const User = require('../models/user')
 
 movieRouter.get('/', async (request, response) => {
   /*
@@ -29,51 +26,18 @@ movieRouter.get('/', async (request, response) => {
     // const benimFrontendimeGondermekIStedigimDAta = { movies: [...] }
 
     //const filteredMovies = data.Search.map(movie => ({ imdbID: movie.imdbID, Title: movie.Title }))
-    response.send({ movies: data.Search })
+    const normalizedMovies = data.Search.map(movie => ({
+      imdbID: movie.imdbID,
+      title: movie.Title,
+      poster: movie.Poster,
+    }))
+
+    response.send({ movies: normalizedMovies })
     // karsiya dondugumuz cevap: `{ movies: [{ id: ..}, {}] }`
   } catch (error) {
     console.log(error)
     response.status(500).send({ message: 'An error occurred', details: error })
   }
-})
-
-const getTokenFrom = request => {
-  const authorization = request.get('authorization')
-  if(authorization && authorization.toLowerCase().startsWith('bearer')){
-    return authorization.substring(7)
-  }
-  return null
-}
-
-movieRouter.post('/', async (request, response) => {
-  const { title, poster } = request.body
-  const token = getTokenFrom(request)
-  const decodedToken = jwt.verify(token, process.env.SECRET) // eslint-disable-line
-  console.log(token)
-
-  if(!token || !decodedToken.id ){
-    return response.status(401).json({ error:'token is missing or invalid' })
-  }
-
-  const user = await User.findById(decodedToken.id)
-
-  const movie = new Movie({
-    title,
-    poster,
-    user: user._id
-  })
-
-  const savedMovie = await movie.save()
-  user.movies = user.movies.concat(savedMovie._id)
-  await user.save()
-  response.json(savedMovie)
-
-  // const watcheddetails = new Movie(request.body)
-
-  // const user = await User.findById(request.user.id)
-
-// const savedMovie = await watcheddetails.save()
-// response.status(201).json(savedMovie.toJSON())
 })
 
 module.exports = movieRouter
@@ -86,3 +50,4 @@ const mapImdbApiAlternative2020SonResponseToMovieObject = (movieFetchedFromApi) 
 
 const mapMovies = response.data.map(mapImdbApiAlternative2020SonResponseToMovieObject)
 */
+

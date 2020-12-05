@@ -8,8 +8,6 @@ import axios from "axios"
   }, 
 */
 
-const baseUrl = "/api/movies"
-
 let token = null
 
 const setToken = (newToken) => {
@@ -22,21 +20,24 @@ const searchmovies = async (keyword) => {
     params: { keyword },
   }
 
-  const response = await axios.get(baseUrl, config)
+  const response = await axios.get('/api/movies', config)
   return response.data
 }
 
-const addmovies = async ({ title, poster }) => {
+const addmovies = async (movie) => {
   const config = {
     headers: { Authorization: token },
   }
 
-  const response = await axios.post(baseUrl, { title, poster}, config)
+  const response = await axios.post('/api/users/movies', movie, config)
   return response.data
 }
 
 const getMovies = async () => {
-  const response = await axios.get(baseUrl)
+  const config = {
+    headers: { Authorization: token },
+  }
+  const response = await axios.get("/api/users/movies", config)
   return response.data
 }
 

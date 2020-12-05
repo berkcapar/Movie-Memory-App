@@ -10,10 +10,8 @@ const MovieListItem = ({ movie }) => {
 
   const addMovie = async (event) => {
     setLoading(true)
-    const title = movie.Title;
-    const poster = movie.Poster
     try {
-      dispatch(newMovie(title,poster))
+      dispatch(newMovie(movie))
     } catch(execption){
       console.log("Try to add again!")
     }
@@ -21,8 +19,8 @@ const MovieListItem = ({ movie }) => {
   
   return (
     <div className="moviecard">
-      <h2 className="movietitle">{movie.Title}</h2>
-      <img src={movie.Poster} />
+      <h2 className="movietitle">{movie.title}</h2>
+      <img src={movie.poster} />
       <button disabled={loading} onClick={addMovie} type="submit">
         {loading ? "Adding" : "Add to Your Collection!"}
       </button>
